@@ -32,17 +32,6 @@ module.exports = (env, argv) => ({
     },
     module: {
         rules: [
-            // .jsxファイルの時
-            // {
-            //     test: [/\.jsx$/, /\.js$/],
-            //     exclude: /(node_modules|bower_components)/,
-            //     use: [{
-            //         loader: "babel-loader",
-            //         options: {
-            //             presets: ["@babel/preset-env", "@babel/preset-react"]
-            //         }
-            //     }]
-            // },
             // js,ts,tsxのローダ設定
             {
                 test: [/\.ts$/, /\.tsx$/, /\.js$/, /\.jsx$/],
@@ -50,9 +39,35 @@ module.exports = (env, argv) => ({
             },
             // scssのローダ設定
             {
-                test: [/\.css$/, /\.scss$/],
-                exclude: /node_modules/,
-                loader: [MiniCssExtractPlugin.loader, 'css-loader?modules', 'postcss-loader', 'sass-loader'],
+                test: [/\.css/, /\.scss/], // 対象となるファイルの拡張子
+                use: [
+                    // CSSファイルを書き出すオプションを有効にする
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                    },
+                    // CSSをバンドルするための機能
+                    {
+                        loader: "css-loader",
+                        options: {
+                            // オプションでCSS内のurl()メソッドの取り込みを禁止する
+                            url: false,
+                            // ソースマップの利用有無
+                            sourceMap: argv.mode == "development",
+
+                            // 0 => no loaders (default);
+                            // 1 => postcss-loader;
+                            // 2 => postcss-loader, sass-loader
+                            importLoaders: 2,
+                        },
+                    },
+                    {
+                        loader: "sass-loader",
+                        options: {
+                            // ソースマップの利用有無
+                            sourceMap: argv.mode == "development",
+                        },
+                    },
+                ],
             }
         ]
     },

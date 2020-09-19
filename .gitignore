@@ -9,4 +9,7 @@ build/
 dist/*
 !.gitkeep
 
+# mac
+.DS_Store
+
 

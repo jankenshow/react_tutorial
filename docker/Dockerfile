@@ -1,3 +1,5 @@
 FROM node:12.8.3
 
-ADD ../tutorial
+ADD ../tutorial /workspace/
+
+RUN 
