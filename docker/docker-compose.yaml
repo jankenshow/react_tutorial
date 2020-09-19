@@ -1,0 +1,12 @@
+version: '0.1'
+
+services:
+  app:
+    image: react_app:latest
+    container_name: react_app
+    tty: true
+    volumes:
+      - ../tutorial:/workspace/tutorial
+    working_dir: "/workspace"
+    ports:
+      - "127.0.0.1:8080:8080"
