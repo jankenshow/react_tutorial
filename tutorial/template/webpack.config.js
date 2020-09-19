@@ -35,7 +35,9 @@ module.exports = (env, argv) => ({
             // js,ts,tsxのローダ設定
             {
                 test: [/\.ts$/, /\.tsx$/, /\.js$/, /\.jsx$/],
-                loader: ['babel-loader', 'ts-loader']
+                loader: ['babel-loader', 'ts-loader'],
+                // 本番環境ではコメントアウトした方が良い、、？
+                exclude: /node_modules/
             },
             // scssのローダ設定
             {
