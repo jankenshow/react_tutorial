@@ -1,0 +1,12 @@
+# .gitkeep
+!.gitkeep
+
+# node packages
+node_modules/
+
+# build
+build/
+dist/*
+!.gitkeep
+
+

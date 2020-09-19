@@ -1,0 +1,16 @@
+{
+    "presets": [
+        [
+            "@babel/preset-env",
+            { //babelの設定
+                "useBuiltIns": "usage",
+                "corejs": 3 // polyfill用の設定
+            }
+        ],
+        "@babel/preset-react", // react用のbabelの設定
+        [
+            "minify",
+            {}
+        ] // minifyの設定
+    ]
+}
