@@ -73,8 +73,8 @@ class Game extends React.Component {
 
   handleClick(i) {
     const history = this.state.history;
-    const current = history[history.length - 1]
-    let squares = current.squares.slice();
+    const current = history[history.length - 1];
+    const squares = current.squares.slice();
 
     if (calculateWinner(squares) || squares[i]) {
       return;
@@ -82,8 +82,8 @@ class Game extends React.Component {
 
     squares[i] = this.state.xIsNext ? 'X' : 'O';
     this.setState({
-      hsitory: history.concat([{
-        squares: squares,
+      history: history.concat([{
+        squares: squares
       }]),
       xIsNext: !this.state.xIsNext,
     });
@@ -93,6 +93,7 @@ class Game extends React.Component {
     const history = this.state.history;
     const current = history[history.length - 1];
     const winner = calculateWinner(current.squares);
+
     let status;
     if (winner) {
       status = 'Winner: ' + winner;
